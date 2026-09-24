@@ -1,0 +1,24 @@
+.clients-panel {
+    margin-top: 0;
+}
+
+.client-meta {
+    color: var(--muted);
+    font-size: 11px;
+}
+
+.clients-panel .filters {
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--line);
+}
+
+.clients-panel .input {
+    min-width: 260px;
+}
+
+@media (max-width: 700px) {
+    .clients-panel .input {
+        width: 100%;
+        min-width: 0;
+    }
+}

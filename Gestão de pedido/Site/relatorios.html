@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width,initial-scale=1.0" name="viewport"/>
+    <link href="css/geral.css" rel="stylesheet"/>
+    <link href="css/relatorios.css" rel="stylesheet"/>
+    <title>Procyol | Relatórios</title>
+    <script>
+      (() => {
+        const temaInicial = localStorage.getItem("procyolTema");
+        let escuro = temaInicial === "dark";
+        
+        if (temaInicial === "system") {
+          escuro = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        }
+        
+        if (escuro) {
+          document.documentElement.classList.add("dark");
+        }
+      })();
+    </script>
+</head>
+ <body>
+  <div class="app">
+    <aside class="side">
+      <div class="user-top">
+        <div class="avatar" id="sideAvatar">PH</div>
+        <div class="user-info">
+          <b id="sideName">Usuário</b>
+          <span id="sideRole">Cargo</span>
+        </div>
+      </div>
+      
+      <div class="side-search">
+        <span>🔍︎</span>
+        <input id="sideSearch" placeholder="Pesquisar" type="text"/>
+      </div>
+      <p class="menu-title">DASHBOARD</p>
+      <nav class="nav">
+        <a class="" href="dashboard.html">
+          <span class="menu-icon">📊︎</span>
+          <span>Visão Geral</span>
+        </a>
+        <a class="" href="pedidos.html">
+          <span class="menu-icon">🛒︎</span>
+          <span>Pedidos</span>
+        </a>
+        <a class="" href="clientes.html">
+          <span class="menu-icon">👤︎</span>
+          <span>Clientes</span>
+        </a>
+        <a href="produtos.html">
+          <span class="menu-icon">❒</span>
+          <span>Produtos</span>
+        </a>
+        <a class="active" href="relatorios.html">
+          <span class="menu-icon">🗁</span>
+          <span>Relatórios</span>
+        </a>
+        <a class="" href="configuracoes.html">
+          <span class="menu-icon">⚙</span>
+          <span>Configurações</span>
+        </a>
+      </nav>
+      <div class="spacer">
+      </div>
+      <button class="logout" id="logoutBtn">
+        <span>➜]</span>
+        <span>Sair</span>
+      </button>
+    </aside>
+    
+    <main class="main">
+      <header class="top">
+        <div>
+          <h1>Relatórios</h1>
+          <p>Analise vendas e desempenho dos pedidos.</p>
+        </div>
+        <div class="top-actions">
+          <button class="btn icon" id="themeQuick">◐</button>
+        </div>
+      </header>
+      
+      <div class="content">
+        <section class="report-stats">
+          <div class="card report-stat">
+            <small>Vendas este mês</small>
+            <strong id="salesCurrent">R$ 0,00</strong>
+          </div>
+          <div class="card report-stat">
+            <small>Vendas mês passado</small>
+            <strong id="salesPrevious">R$ 0,00</strong>
+          </div>
+          <div class="card report-stat">
+            <small>Pedidos entregues</small>
+            <strong id="deliveredOrders">0</strong>
+          </div>
+          <div class="card report-stat">
+            <small>Ticket médio</small>
+            <strong id="averageTicket">R$ 0,00</strong>
+          </div>
+        </section>
+        
+        <section class="reports-grid">
+          <div class="card chart-card">
+            <div class="chart-title">
+              <div>
+                <h2>Vendas por mês</h2>
+                <p>Últimos 6 meses</p>
+              </div>
+            </div>
+            <div class="chart-wrap">
+              <canvas id="salesChart"></canvas>
+            </div>
+          </div>
+          <div class="card chart-card">
+            <div class="chart-title">
+              <div>
+                <h2>Pedidos por status</h2>
+                <p>Distribuição atual</p>
+              </div>
+            </div>
+            <div class="chart-wrap">
+              <canvas id="statusChart">
+              </canvas>
+            </div>
+            <div class="status-list" id="statusList">
+            </div>
+          </div>
+        </section>
+        
+        <section class="panel report-table">
+          <div class="panel-head">
+            <div>
+              <h2>Resumo mensal</h2>
+              <p>Pedidos entregues e faturamento.</p>
+            </div>
+          </div>
+          <div class="table">
+            <table>
+              <thead>
+                <tr>
+                  <th>Mês</th>
+                  <th>Pedidos entregues</th>
+                  <th>Vendas</th>
+                </tr>
+              </thead>
+              <tbody id="monthlyBody">
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+  
+  <div class="toast" id="toast"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/geral.js"></script>
+  <script src="js/relatorios.js"></script>
+
+ </body>
+</html>

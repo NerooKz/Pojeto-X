@@ -1,0 +1,251 @@
+* {
+    box-sizing:border-box;
+    margin:0;
+    padding:0
+}
+
+:root {
+    --p:#4c5ab2;
+    --p2:#414e9d;
+    --text:#171717;
+    --muted:#777985;
+    --border:#e5e6eb;
+    --bg: #f4f4f7
+}
+
+body {
+    min-height:100vh;
+    font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    background:var(--bg);
+    color:var(--text)
+}
+
+button,input {
+    font:inherit
+}
+
+.login-page {
+    min-height:100vh;
+    display:grid;
+    grid-template-columns:1.05fr .95fr
+}
+
+.brand-side {
+    position:relative;
+    padding:48px 65px;
+    background:linear-gradient(145deg,#5665c7,#3f4d9e);
+    color:#fff;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+    overflow:hidden
+}
+
+.brand-side:before {
+    content:"";
+    position:absolute;
+    width:500px;
+    height:500px;
+    border:1px solid rgba(255,255,255,.11);
+    border-radius:50%;
+    right:-220px;
+    top:-200px
+}
+
+.brand {
+    position:relative;
+    z-index:2;
+    display:flex;
+    align-items:center;
+    gap:12px;
+    font-size:23px;
+    font-weight:800
+}
+
+.logo {
+    width:42px;
+    height:42px;
+    border-radius:11px;
+    display:grid;
+    place-items:center;
+    background:rgba(255,255,255,.15);
+    border:1px solid rgba(255,255,255,.2);
+    font-weight:900
+}
+
+.presentation {
+    position:relative;
+    z-index:2;
+    max-width:540px
+}
+
+.tag {
+    display:block;
+    margin-bottom:18px;
+    font-size:12px;
+    font-weight:800;
+    letter-spacing:.12em;
+    opacity:.72
+}
+
+.presentation h1 {
+    max-width:500px;
+    font-size:clamp(38px,4vw,54px);
+    line-height:1.04;
+    letter-spacing:-2px
+}
+
+.presentation p {
+    max-width:470px;
+    margin-top:20px;
+    font-size:16px;
+    line-height:1.7;
+    color:rgba(255,255,255,.78)
+}
+
+.footer-brand {
+    position:relative;
+    z-index:2;
+    font-size:11px;
+    color:rgba(255,255,255,.55)
+}
+
+.login-side {
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:50px;
+    background:#fff
+}
+
+.login-box {
+    width:100%;
+    max-width:390px
+}
+
+.mobile-logo {
+    display:none
+}
+
+.login-box h2 {
+    font-size:33px;
+    letter-spacing:-1.1px
+}
+
+.subtitle {
+    margin:9px 0 32px;
+    color:var(--muted);
+    font-size:14px;
+    line-height:1.6
+}
+
+.field {
+    margin-bottom:18px
+}
+
+.field label {
+    display:block;
+    margin-bottom:8px;
+    font-size:13px;
+    font-weight:700
+}
+
+.field input {
+    width:100%;
+    height:52px;
+    padding:0 15px;
+    border:1px solid var(--border);
+    border-radius:11px;
+    outline:none;
+    background:#fff;
+    color:var(--text);
+    font-size:14px
+}
+
+.field input:focus {
+    border-color:var(--p);
+    box-shadow:0 0 0 4px rgba(76,90,178,.1)
+}
+
+.password-box {
+    position:relative
+}
+
+.password-box input {
+    padding-right:50px
+}
+
+.eye {
+    position:absolute;
+    right:14px;
+    top:50%;
+    transform:translateY(-50%);
+    border:0;
+    background:transparent;
+    color:#858691;
+    cursor:pointer;
+    font-size:17px
+}
+
+.login-button {
+    width:100%;
+    height:53px;
+    margin-top:7px;
+    border:0;
+    border-radius:11px;
+    background:var(--p);
+    color:#fff;
+    font-size:15px;
+    font-weight:800;
+    cursor:pointer
+}
+
+.login-button:hover {
+    background:var(--p2)
+}
+
+.error {
+    display:none;
+    margin-bottom:18px;
+    padding:12px 14px;
+    border-radius:10px;
+    background:#fff1f1;
+    color:#b42318;
+    font-size:13px
+}
+
+.system-info {
+    margin-top:22px;
+    text-align:center;
+    color:#a0a1a9;
+    font-size:11px
+}
+
+@media(max-width:900px) {
+    .login-page {
+        grid-template-columns:1fr
+    }
+
+    .brand-side {
+        display:none
+    }
+
+    .login-side {
+        min-height:100vh;
+        padding:30px
+    }
+
+    .mobile-logo {
+        display:flex;
+        align-items:center;
+        gap:10px;
+        margin-bottom:45px;
+        font-weight:800;
+        font-size:20px
+    }
+    
+    .mobile-logo .logo {
+        background:var(--p);
+        color:#fff
+    }
+}

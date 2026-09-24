@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/geral.css">
+    <link rel="stylesheet" href="css/produtos.css">
+    <title>Procyol | Produtos</title>
+    <script>
+        (() => {
+            const temaInicial = localStorage.getItem("procyolTema");
+            let usarEscuro = temaInicial === "dark";
+
+            if (temaInicial === "system") {
+                usarEscuro = window.matchMedia("(prefers-color-scheme: dark)").matches;
+            }
+
+            if (usarEscuro) {
+                document.documentElement.classList.add("dark");
+            }
+        })();
+    </script>
+</head>
+<body>
+    <aside class="side">
+        <div class="user-top">
+            <div class="avatar" id="sideAvatar">A</div>
+            <div class="user-info">
+                <b id="sideName">Administrador</b>
+                <span id="sideRole">Administrador</span>
+            </div>
+        </div>
+
+        <div class="side-search">
+            <span>🔍︎</span>
+            <input type="text" id="sideSearch" placeholder="Pesquisar">
+        </div>
+
+        <div class="menu-title">DASHBOARD</div>
+        <nav class="nav">
+            <a href="dashboard.html">
+                <span class="menu-icon">📊︎</span>
+                <span>Visão Geral</span>
+            </a>
+            <a href="pedidos.html">
+                <span class="menu-icon">🛒︎</span>
+                <span>Pedidos</span>
+            </a>
+            <a href="clientes.html">
+                <span class="menu-icon">👤︎</span>
+                <span>Clientes</span>
+            </a>
+            <a href="produtos.html" class="active">
+                <span class="menu-icon">❒</span>
+                <span>Produtos</span>
+            </a>
+            <a href="relatorios.html">
+                <span class="menu-icon">🗁</span>
+                <span>Relatórios</span>
+            </a>
+            <a href="configuracoes.html">
+                <span class="menu-icon">⚙</span>
+                <span>Configurações</span>
+            </a>
+        </nav>
+
+        <div class="spacer"></div>
+        <button class="logout" id="logoutBtn">
+            <span>➜]</span>
+            <span>Sair</span>
+        </button>
+    </aside>
+
+    <main class="main">
+        <header class="top">
+            <div>
+                <h1>Produtos</h1>
+                <p>Cadastre e gerencie os produtos.</p>
+            </div>
+            <div class="top-actions">
+                <button class="btn icon" id="themeQuick" title="Alternar tema">◐</button>
+                <button class="btn primary" id="newProductBtn">+ Novo produto</button>
+            </div>
+        </header>
+
+        <section class="content">
+            <div class="panel">
+                <div class="panel-head">
+                    <div>
+                        <h2>Produtos cadastrados</h2>
+                        <p>Produtos disponíveis no sistema.</p>
+                    </div>
+                </div>
+                <div class="table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Produto</th>
+                                <th>Categoria</th>
+                                <th>Preço</th>
+                                <th>Estoque</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="productsBody">
+                            <tr>
+                                <td colspan="5" class="empty">Carregando produtos...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div class="modal-bg" id="productModal">
+        <div class="modal">
+            <div class="modal-head">
+                <h2 id="productModalTitle">Novo produto</h2>
+                <button class="close" data-close="productModal">×</button>
+            </div>
+
+            <div class="modal-body">
+                <div class="form">
+                    <div class="group">
+                        <label for="produtoNome">Nome</label>
+                        <input class="input" id="produtoNome" type="text" placeholder="Ex: X-Bacon">
+                    </div>
+
+                    <div class="group">
+                        <label for="produtoCategoria">Categoria</label>
+                        <input class="input" id="produtoCategoria" type="text" placeholder="Ex: Lanches">
+                    </div>
+
+                    <div class="group">
+                        <label for="produtoPreco">Preço</label>
+                        <input class="input" id="produtoPreco" type="number" min="0" step="0.01" placeholder="0,00">
+                    </div>
+
+                    <div class="group">
+                        <label for="produtoEstoque">Estoque</label>
+                        <input class="input" id="produtoEstoque" type="number" min="0" step="1" placeholder="0">
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-foot">
+                <button class="btn ghost" data-close="productModal">Cancelar</button>
+                <button class="btn primary" id="saveProduct">Salvar produto</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="toast" id="toast">
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/geral.js"></script>
+    <script src="js/produtos.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,59 @@
+/* ==========================================
+   MODAL DE PEDIDOS
+   ========================================== */
+
+#orderModal .modal {
+    width: min(620px, 95vw);
+    overflow-x: hidden;
+}
+
+#orderModal .modal-body {
+    overflow-x: hidden;
+}
+
+#orderModal .form {
+    width: 100%;
+}
+
+#orderModal .group {
+    min-width: 0;
+}
+
+#orderModal .input,
+#orderModal .select,
+#orderModal .textarea {
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+}
+
+.orders-panel {
+    margin-top: 0;
+}
+
+.filters-bar {
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--line);
+}
+
+.filters-bar .input {
+    min-width: 240px;
+}
+
+.orders-panel .status {
+    min-width: 76px;
+    text-align: center;
+}
+
+.modal .textarea {
+    min-height: 90px;
+    resize: vertical;
+}
+
+@media (max-width: 700px) {
+    .filters-bar .input,
+    .filters-bar .select {
+        width: 100%;
+        min-width: 0;
+    }
+}

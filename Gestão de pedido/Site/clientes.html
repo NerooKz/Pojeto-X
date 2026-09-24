@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1.0" name="viewport"/>
+  <link href="css/geral.css" rel="stylesheet"/>
+  <link href="css/clientes.css" rel="stylesheet"/>
+  <title>Procyol | Clientes</title>
+  <script>
+   (() => {
+    const temaInicial = localStorage.getItem("procyolTema");
+    let escuro = temaInicial === "dark";
+
+    if (temaInicial === "system") {
+     escuro = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    }
+
+    if (escuro) {
+     document.documentElement.classList.add("dark");
+    }
+   })();
+  </script>
+</head>
+<body>
+  <div class="app">
+   <aside class="side">
+    <div class="user-top">
+     <div class="avatar" id="sideAvatar">PH</div>
+     <div class="user-info">
+      <b id="sideName">Usuário</b>
+      <span id="sideRole">Cargo</span>
+     </div>
+    </div>
+    <div class="side-search">
+     <span>🔍︎</span>
+     <input id="sideSearch" placeholder="Pesquisar" type="text"/>
+    </div>
+    <p class="menu-title">DASHBOARD</p>
+    <nav class="nav">
+     <a class="" href="dashboard.html">
+      <span class="menu-icon">📊︎</span>
+      <span>Visão Geral</span>
+    </a>
+     
+    <a class="" href="pedidos.html">
+      <span class="menu-icon">🛒︎</span>
+      <span>Pedidos</span>
+     </a>
+     <a class="active" href="clientes.html">
+      <span class="menu-icon">👤︎</span>
+      <span>Clientes</span>
+     </a>
+     <a href="produtos.html">
+      <span class="menu-icon">❒</span>
+      <span>Produtos</span>
+     </a>
+     <a class="" href="relatorios.html">
+      <span class="menu-icon">🗁</span>
+      <span>Relatórios</span>
+     </a>
+     <a class="" href="configuracoes.html">
+      <span class="menu-icon">⚙</span>
+      <span>Configurações</span>
+     </a>
+    </nav>
+    <div class="spacer">
+    </div>
+    <button class="logout" id="logoutBtn">
+     <span>➜]</span>
+     <span>Sair</span>
+    </button>
+   </aside>
+   <main class="main">
+    <header class="top">
+     <div>
+      <h1>Clientes</h1>
+      <p>Consulte e organize os clientes da empresa.</p>
+     </div>
+     <div class="top-actions">
+      <button class="btn icon" id="themeQuick">◐</button>
+      <button class="btn primary" id="newClientBtn">+ Novo cliente</button>
+     </div>
+    </header>
+    <div class="content">
+     <section class="panel clients-panel">
+      <div class="filters">
+       <input class="input" id="clientSearch" placeholder="Buscar cliente..."/>
+      </div>
+      <div class="table">
+       <table>
+        <thead>
+         <tr>
+          <th>Cliente</th>
+          <th>Telefone</th>
+          <th>E-mail</th>
+          <th>Pedidos</th>
+          <th>Último pedido</th>
+          <th>Ações</th>
+         </tr>
+        </thead>
+        <tbody id="clientsBody">
+        </tbody>
+       </table>
+      </div>
+     </section>
+     <div class="modal-bg" id="clientModal">
+      <div class="modal">
+       <div class="modal-head">
+        <b>Novo cliente</b>
+        <button class="close" data-close="clientModal">×</button>
+       </div>
+       <div class="modal-body">
+        <div class="form">
+         <div class="group">
+          <label>Nome</label>
+          <input class="input" id="clientName"/>
+         </div>
+         <div class="group">
+          <label>Telefone</label>
+          <input class="input" id="clientPhone"/>
+         </div>
+         <div class="group full">
+          <label>E-mail</label>
+          <input class="input" id="clientEmail"/>
+         </div>
+        </div>
+       </div>
+       <div class="modal-foot">
+        <button class="btn ghost" data-close="clientModal">Cancelar
+        </button>
+        <button class="btn primary" id="saveClient">Salvar cliente
+        </button>
+       </div>
+      </div>
+     </div>
+    </div>
+   </main>
+  </div>
+  <div class="toast" id="toast">
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/geral.js">
+  </script>
+  <script src="js/clientes.js">
+  </script>
+ </body>
+</html>

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1.0" name="viewport"/>
+  <title>Procyol | Dashboard</title>
+  <script>
+   (() => {
+    const temaInicial = localStorage.getItem("procyolTema");
+    let escuro = temaInicial === "dark";
+
+    if (temaInicial === "system") {
+     escuro = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    }
+
+    if (escuro) {
+     document.documentElement.classList.add("dark");
+    }
+   })();
+  </script>
+
+  <link href="css/geral.css" rel="stylesheet"/>
+  <link href="css/dashboard.css" rel="stylesheet"/>
+</head>
+ <body>
+  <div class="app">
+   <aside class="side">
+    <div class="user-top">
+     <div class="avatar" id="sideAvatar">PH</div>
+     <div class="user-info">
+      <b id="sideName">Usuário</b>
+      <span id="sideRole">Cargo</span>
+    </div>
+  </div>
+  <div class="side-search">
+     <span>🔍︎</span>
+     <input id="sideSearch" placeholder="Pesquisar" type="text"/>
+    </div>
+    <p class="menu-title">DASHBOARD</p>
+    <nav class="nav">
+     <a class="active" href="dashboard.html">
+      <span class="menu-icon">📊︎</span>
+      <span>Visão Geral</span>
+     </a>
+     <a class="" href="pedidos.html">
+      <span class="menu-icon">🛒︎</span>
+      <span>Pedidos</span>
+     </a>
+     <a class="" href="clientes.html">
+      <span class="menu-icon">👤︎</span>
+      <span>Clientes</span>
+     </a>
+     <a href="produtos.html">
+      <span class="menu-icon">❒</span>
+      <span>Produtos</span>
+     </a>
+     <a class="" href="relatorios.html">
+      <span class="menu-icon">🗁</span>
+      <span>Relatórios</span>
+    </a>
+     <a class="" href="configuracoes.html">
+      <span class="menu-icon">⚙</span>
+      <span>Configurações</span>
+     </a>
+    </nav>
+    <div class="spacer">
+    </div>
+    <button class="logout" id="logoutBtn">
+     <span>➜]</span>
+     <span>Sair</span>
+    </button>
+   </aside>
+   <main class="main">
+    <header class="top">
+     <div>
+      <h1>Visão geral</h1>
+      <p>Acompanhe os principais dados da operação.</p>
+     </div>
+     <div class="top-actions">
+      <button class="btn icon" id="themeQuick">◐</button>
+     </div>
+    </header>
+    <div class="content">
+     <section class="stats">
+      <div class="stat">
+       <div class="stat-head">
+        <small>Pedidos novos</small>
+        <div class="bubble">🛒︎</div>
+       </div>
+       <strong id="sNew">0
+       </strong>
+       <span>Aguardando início</span>
+      </div>
+      <div class="stat">
+       <div class="stat-head">
+        <small>Em preparo
+        </small>
+        <div class="bubble">⏱</div>
+       </div>
+       <strong id="sPrep">0</strong>
+       <span>Em andamento</span>
+      </div>
+      <div class="stat">
+       <div class="stat-head">
+        <small>Prontos</small>
+        <div class="bubble">🗹</div>
+       </div>
+       <strong id="sReady">0</strong>
+       <span>Retirada ou entrega</span>
+      </div>
+      <div class="stat">
+       <div class="stat-head">
+        <small>Clientes</small>
+        <div class="bubble">👤︎</div>
+       </div>
+       <strong id="sClients">0</strong>
+       <span>Cadastrados</span>
+      </div>
+     </section>
+     <section class="panel recent">
+      <div class="panel-head">
+       <div>
+        <h2>Pedidos recentes</h2>
+        <p>Últimos pedidos cadastrados.</p>
+       </div>
+       <a class="small" href="pedidos.html">Ver todos</a>
+      </div>
+      <div class="table">
+       <table>
+        <thead>
+         <tr>
+          <th>Pedido</th>
+          <th>Cliente</th>
+          <th>Valor</th>
+          <th>Origem</th>
+          <th>Status</th>
+         </tr>
+        </thead>
+        <tbody id="dashBody">
+        </tbody>
+       </table>
+      </div>
+     </section>
+    </div>
+   </main>
+  </div>
+  <div class="toast" id="toast">
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/geral.js">
+  </script>
+  <script src="js/dashboard.js">
+  </script>
+ </body>
+</html>

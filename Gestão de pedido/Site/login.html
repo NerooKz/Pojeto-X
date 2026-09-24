@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1.0" name="viewport"/>
+  <link href="css/login.css" rel="stylesheet"/>
+  <title>Procyol | Login</title>
+  <script>
+   (() => {
+    const temaInicial = localStorage.getItem("procyolTema");
+    let escuro = temaInicial === "dark";
+
+    if (temaInicial === "system") {
+     escuro = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    }
+
+    if (escuro) {
+     document.documentElement.classList.add("dark");
+    }
+   })();
+  </script>
+</head>
+ <body>
+  <main class="login-page">
+   <section class="brand-side">
+    <div class="brand">
+     <div class="logo">P</div>
+     <span>Procyol</span>
+    </div>
+    <div class="presentation">
+     <span class="tag">GESTÃO DE PEDIDOS</span>
+     <h1>Sua operação organizada em um só lugar.</h1>
+     <p>Gerencie pedidos, acompanhe clientes e mantenha sua equipe conectada durante toda a operação.</p>
+    </div>
+    <div class="footer-brand">Procyol Corporation</div>
+   </section>
+   <section class="login-side">
+    <div class="login-box">
+     <div class="mobile-logo">
+      <div class="logo">P</div>
+      <span>Procyol</span>
+     </div>
+     <h2>Bem-vindo de volta</h2>
+     <p class="subtitle">Entre com sua conta para acessar o painel da sua empresa.</p>
+     <div class="error" id="error">E-mail ou senha inválidos.</div>
+     <form id="loginForm">
+      <div class="field">
+       <label for="user">E-mail</label>
+       <input autocomplete="username" id="user" placeholder="Digite seu usuário" type="text"/>
+      </div>
+      <div class="field">
+       <label for="password">Senha</label>
+       <div class="password-box">
+        <input autocomplete="current-password" id="password" placeholder="Digite sua senha" type="password"/>
+        <button class="eye" id="togglePassword" type="button">◉</button>
+       </div>
+      </div>
+      <button class="login-button" type="submit">Entrar</button>
+     </form>
+     <p class="system-info">Acesso restrito a usuários autorizados.</p>
+    </div>
+   </section>
+  </main>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/login.js">
+  </script>
+ </body>
+</html>

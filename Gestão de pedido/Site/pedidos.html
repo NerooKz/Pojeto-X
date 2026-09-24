@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="css/geral.css" rel="stylesheet">
+    <link href="css/pedidos.css" rel="stylesheet">
+    <title>Procyol | Pedidos</title>
+    <script>
+        (() => {
+            const temaInicial = localStorage.getItem("procyolTema");
+            
+            let escuro = temaInicial === "dark";
+            if (temaInicial === "system") {
+                escuro = window.matchMedia("(prefers-color-scheme: dark)").matches;
+            }
+
+            if (escuro) {
+                document.documentElement.classList.add("dark");
+            }
+        })();
+    </script>
+</head>
+<body>
+    <div class="app">
+        <aside class="side">    
+            <div class="user-top">
+                <div class="avatar" id="sideAvatar">PH</div>
+                <div class="user-info">
+                    <b id="sideName">Usuário</b>
+                    <span id="sideRole">Cargo</span>
+                </div>
+            </div>
+
+            <div class="side-search">
+                <span>🔍︎</span>
+                <input id="sideSearch" placeholder="Pesquisar" type="text">
+            </div>
+            <p class="menu-title">DASHBOARD</p>
+            <nav class="nav">
+                <a href="dashboard.html">
+                    <span class="menu-icon">📊︎</span>
+                    <span>Visão Geral</span>
+                </a>
+                <a class="active" href="pedidos.html">
+                    <span class="menu-icon">🛒︎</span>
+                    <span>Pedidos</span>
+                </a>
+                <a href="clientes.html">
+                    <span class="menu-icon">👤︎</span>
+                    <span>Clientes</span>
+                </a>
+                <a href="produtos.html">
+                    <span class="menu-icon">❒</span>
+                    <span>Produtos</span>
+                </a>
+                <a href="relatorios.html">
+                    <span class="menu-icon">🗁</span>
+                    <span>Relatórios</span>
+                </a>
+                <a href="configuracoes.html">
+                    <span class="menu-icon">⚙</span>
+                    <span>Configurações</span>
+                </a>
+            </nav>
+            <div class="spacer">
+            </div>
+
+            <button class="logout" id="logoutBtn">
+                <span>➜]</span>
+                <span>Sair</span>
+            </button>
+        </aside>
+
+        <main class="main">
+            <header class="top">
+                <div>
+                    <h1>Pedidos</h1>
+                    <p>Cadastre e acompanhe todos os pedidos.</p>
+                </div>
+
+                <div class="top-actions">
+                    <button class="btn icon" id="themeQuick">◐</button>
+                    <button class="btn ghost" id="simulateBtn">Simular automático</button>
+                    <button class="btn primary" id="newOrderBtn">+ Novo pedido</button>
+                </div>
+            </header>
+
+            <div class="content">
+                <section class="panel orders-panel">
+                    <div class="filters-bar">
+                        <div class="filters">
+                            <input class="input" id="orderSearch" placeholder="Buscar pedido ou cliente...">
+                            
+                            <select class="select" id="orderStatus">
+                                <option value="">Todos os status</option>
+                                <option>Novo</option>
+                                <option>Em preparo</option>
+                                <option>Pronto</option>
+                                <option>Entregue</option>
+                                <option>Cancelado</option>
+                            </select>
+
+                            <select class="select" id="orderOrigin">
+                                <option value="">Todas as origens</option>
+                                <option>Manual</option>
+                                <option>Automático</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Pedido</th>
+                                    <th>Cliente</th>
+                                    <th>Itens</th>
+                                    <th>Valor</th>
+                                    <th>Data</th>
+                                    <th>Origem</th>
+                                    <th>Status</th>
+                                    <th>Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody id="ordersBody">
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <div class="modal-bg" id="orderModal">
+                    <div class="modal">
+                        <div class="modal-head">
+                            <b>Novo pedido</b>
+                            <buttonclass="close"data-close="orderModal">×</button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form">
+                                <div class="group">
+                                    <label>Cliente existente</label>
+                                    <select class="select" id="orderClient"></select>
+                                </div>
+
+                                <div class="group">
+                                    <label>Ou novo cliente</label>
+                                    <input class="input" id="orderNewName" placeholder="Nome">
+                                </div>
+
+                                <div class="group">
+                                    <label>Telefone</label>
+                                    <input class="input" id="orderNewPhone">
+                                </div>
+
+                                <div class="group">
+                                    <label>E-mail</label>
+                                    <input class="input" id="orderNewEmail" type="email">
+                                </div>
+
+                                <div class="group">
+                                    <label>Categoria</label>
+                                    <select class="select" id="orderCategory">
+                                        <option value="">Selecione...</option>
+                                    </select>
+                                </div>
+
+                                <div class="group">
+                                    <label>Produto</label>
+                                    <select class="select" id="orderProduct" disabled>
+                                        <option value="">Selecione uma categoria primeiro</option>
+                                    </select>
+                                </div>
+
+                                <div class="group full">
+                                    <label>Quantidade</label>
+                                    <input class="input" id="orderQuantity" type="number" min="1" value="1">
+                                </div>
+
+                                <div class="group">
+                                    <label>Valor total</label>
+                                    <input class="input" id="orderValue" step="0.01" type="number" readonly>
+                                </div>
+
+                                <div class="group">
+                                    <label>Status inicial</label>
+                                    <select class="select" id="orderInitial">
+                                        <option>Novo</option>
+                                        <option>Em preparo</option>
+                                        <option>Pronto</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="modal-foot">
+                            <button class="btn ghost" data-close="orderModal">Cancelar</button>
+                            <button class="btn primary" id="saveOrder">Criar pedido</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <div class="toast" id="toast">
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/geral.js"></script>
+    <script src="js/pedidos.js"></script>
+</body>
+</html>

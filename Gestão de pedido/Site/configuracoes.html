@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1.0" name="viewport"/>
+  <link href="css/geral.css" rel="stylesheet"/>
+  <link href="css/configuracoes.css" rel="stylesheet"/>
+  <title>Procyol | Configurações</title>
+  <script>
+   (() => {
+    const temaInicial = localStorage.getItem("procyolTema");
+    let escuro = temaInicial === "dark";
+
+    if (temaInicial === "system") {
+     escuro = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    }
+
+    if (escuro) {
+     document.documentElement.classList.add("dark");
+    }
+   })();
+  </script>
+</head>
+ <body>
+  <div class="app">
+   <aside class="side">
+    <div class="user-top">
+     <div class="avatar" id="sideAvatar">PH
+     </div>
+     <div class="user-info">
+      <b id="sideName">Usuário
+      </b>
+      <span id="sideRole">Cargo
+      </span>
+     </div>
+    </div>
+    <div class="side-search">
+     <span>🔍︎</span>
+     <input id="sideSearch" placeholder="Pesquisar" type="text"/>
+    </div>
+    <p class="menu-title">DASHBOARD</p>
+    <nav class="nav">
+     <a class="" href="dashboard.html">
+      <span class="menu-icon">📊︎</span>
+      <span>Visão Geral</span>
+     </a>
+     <a class="" href="pedidos.html">
+      <span class="menu-icon">🛒︎</span>
+      <span>Pedidos</span>
+     </a>
+     <a class="" href="clientes.html">
+      <span class="menu-icon">👤︎</span>
+      <span>Clientes</span>
+     </a>
+     <a href="produtos.html">
+      <span class="menu-icon">❒</span>
+      <span>Produtos</span>
+     </a>
+     <a class="" href="relatorios.html">
+      <span class="menu-icon">🗁</span>
+      <span>Relatórios</span>
+     </a>
+     <a class="active" href="configuracoes.html">
+      <span class="menu-icon">⚙</span>
+      <span>Configurações</span>
+     </a>
+    </nav>
+    <div class="spacer">
+    </div>
+    <button class="logout" id="logoutBtn">
+     <span>➜]</span>
+     <span>Sair</span>
+    </button>
+   </aside>
+   <main class="main">
+    <header class="top">
+     <div>
+      <h1>Configurações</h1>
+      <p>Gerencie perfil, empresa e aparência.</p>
+     </div>
+     <div class="top-actions">
+      <button class="btn icon" id="themeQuick">◐</button>
+     </div>
+    </header>
+    <div class="content">
+     <section class="settings">
+      <div class="panel settings-menu">
+       <button class="active" data-setting="perfil">Perfil</button>
+       <button data-setting="empresa">Empresa</button>
+       <button data-setting="aparencia">Aparência</button>
+      </div>
+      <div>
+       <div class="panel settings-card active" id="set-perfil">
+        <h2>Seu perfil</h2>
+        <div class="sub">Dados da conta atualmente conectada.</div>
+        <div class="profile">
+         <div class="big-avatar" id="profileAvatar">PH</div>
+        </div>
+        <div class="form">
+         <div class="group">
+          <label>Nome</label>
+          <input class="input" id="profileName"/>
+         </div>
+         <div class="group">
+          <label>E-mail</label>
+          <input class="input" id="profileEmail"/>
+         </div>
+         <div class="group">
+          <label>Cargo</label>
+          <input class="input" disabled="" id="profileRole"/>
+         </div>
+         <div class="group full">
+          <button class="btn primary" id="saveProfile">Salvar alterações</button>
+         </div>
+        </div>
+       </div>
+       <div class="panel settings-card" id="set-empresa">
+        <h2>Dados da empresa</h2>
+        <div class="sub">Informações gerais da organização.</div>
+        <div class="form">
+         <div class="group">
+          <label>Nome da empresa</label>
+          <input class="input" id="companyName"/>
+         </div>
+         <div class="group">
+          <label>CNPJ / Identificador
+          </label>
+          <input class="input" id="companyDoc"/>
+         </div>
+         <div class="group">
+          <label>E-mail comercial</label>
+          <input class="input" id="companyEmail"/>
+         </div>
+         <div class="group">
+          <label>Telefone</label>
+          <input class="input" id="companyPhone"/>
+         </div>
+         <div class="group full">
+          <label>Endereço</label>
+          <input class="input" id="companyAddress"/>
+         </div>
+         <div class="group">
+          <label>ID interno</label>
+          <input class="input" disabled="" id="companyId"/>
+         </div>
+         <div class="group">
+          <label>Integração automática</label>
+          <select class="select" id="integration">
+           <option value="off">Não configurada</option>
+           <option value="on">Ativa</option>
+          </select>
+         </div>
+         <div class="group full">
+          <button class="btn primary" id="saveCompany">Salvar empresa</button>
+         </div>
+        </div>
+       </div>
+       <div class="panel settings-card" id="set-aparencia">
+        <h2>Aparência</h2>
+        <div class="sub">Escolha o tema do sistema.</div>
+        <div class="themes">
+         <div class="theme" data-theme="light">
+          <div class="preview">
+           <div class="l">
+           </div>
+           <div class="r">
+           </div>
+          </div>
+          <b>Claro</b>
+         </div>
+         <div class="theme" data-theme="dark">
+          <div class="preview dark">
+           <div class="l">
+           </div>
+           <div class="r">
+           </div>
+          </div>
+          <b>Escuro</b>
+         </div>
+         <div class="theme" data-theme="system">
+          <div class="preview system">
+           <div class="l">
+           </div>
+           <div class="r">
+           </div>
+          </div>
+          <b>Sistema</b>
+         </div>
+        </div>
+       </div>
+      </div>
+     </section>
+    </div>
+   </main>
+  </div>
+  <div class="toast" id="toast">
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/geral.js">
+  </script>
+  <script src="js/configuracoes.js">
+  </script>
+ </body>
+</html>
